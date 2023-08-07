@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
+console.log(process.env.apiBase)
 export default defineNuxtConfig({
   modules: ["@nuxt/image-edge", "@vite-pwa/nuxt"],
   app: {
@@ -39,6 +41,10 @@ export default defineNuxtConfig({
       // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
       periodicSyncForUpdates: 20,
     },
+    devOptions:{
+      enabled:true,
+      type:"module"
+    }
   },
   
 });
