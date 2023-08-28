@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
-console.log(process.env.apiBase)
+console.log(process.env.apiBase);
 export default defineNuxtConfig({
   modules: ["@nuxt/image-edge", "@vite-pwa/nuxt"],
   app: {
@@ -26,14 +26,37 @@ export default defineNuxtConfig({
   pwa: {
     registerType: "autoUpdate",
     manifest: {
+      start_url: process.env.apiBase || "/",
       name: "Nuxt Vite PWA",
       short_name: "NuxtVitePWA",
       theme_color: "#ffffff",
+      description: "Testing Nuxt3 PWA",
+      icons: [
+        {
+          src: "icons/icon_64x64.png",
+          sizes: "64x64",
+          type: "image/png",
+        },
+        {
+          src: "icons/icon_144x144.png",
+          sizes: "144x144",
+          type: "image/png",
+        },
+        {
+          src: "icons/icon_192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "icons/icon_512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+      ],
     },
     workbox: {
-      navigateFallback: '/',
-      globPatterns: ['**/*.{js,css,html,png,svg,ico}'],
-      
+      navigateFallback: process.env.apiBase || "/",
+      globPatterns: ["**/*.{js,css,html,png,svg,ico}"],
     },
     client: {
       installPrompt: true,
@@ -41,10 +64,9 @@ export default defineNuxtConfig({
       // if enabling periodic sync for update use 1 hour or so (periodicSyncForUpdates: 3600)
       periodicSyncForUpdates: 20,
     },
-    devOptions:{
-      enabled:true,
-      type:"module"
-    }
+    devOptions: {
+      enabled: true,
+      type: "module",
+    },
   },
-  
 });
